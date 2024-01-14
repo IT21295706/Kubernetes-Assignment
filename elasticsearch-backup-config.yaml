@@ -1,0 +1,17 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch
+spec:
+  nodeSets:
+  - name: default
+    count: 1
+    podTemplate:
+      spec:
+        containers:
+        - name: elasticsearch
+          env:
+          - name: ES_SNAPSHOT_REPO_PATH
+            value: /usr/share/elasticsearch/backups
+          - name: ES_SNAPSHOT_REPO_NAME
+            value: "my-backup-repo"
