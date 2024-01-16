@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: elasticsearch
 spec:
-  replicas: 1  # You can adjust the number of replicas
+  replicas: 1
   selector:
     matchLabels:
       app: elasticsearch
@@ -17,3 +17,7 @@ spec:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
         ports:
         - containerPort: 9200
+        - containerPort: 9300
+        env:
+        - name: discovery.type
+          value: single-node
